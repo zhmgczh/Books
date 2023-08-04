@@ -1,0 +1,2 @@
+*.mobi filter=lfs diff=lfs merge=lfs -text
+*.prc filter=lfs diff=lfs merge=lfs -text
