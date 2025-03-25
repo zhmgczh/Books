@@ -1,5 +1,22 @@
 {
     "editor.fontFamily": "TW-MOE-Std-Kai, MOESongUN",
-    "editor.fontSize": 40,
-    "editor.wordWrap": "on"
+    "editor.fontSize": 44,
+    "editor.wordWrap": "on",
+    "workbench.colorCustomizations": {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000"
+    },
+    "highlight.decorations": {
+        "rangeBehavior": 3
+    },
+    "highlight.regexFlags": "gi",
+    "highlight.regexes": {
+        "([ht])(:)": [
+            {
+                "color": "#FF0000"
+            }
+        ]
+    },
+    "highlight.minDelay": 50,
+    "highlight.maxMatches": 99999999
 }
