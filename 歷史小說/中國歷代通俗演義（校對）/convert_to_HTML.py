@@ -1,19 +1,24 @@
 def main(
-    file_name: str = "東周列國志演義（余邵魚）", catalog_tag: str = "目錄"
+    book_name: str = "東周列國志演義",
+    author_name: str = "明．余邵魚",
+    catalog_tag: str = "目錄",
 ) -> None:
-    with open(file_name + ".txt", mode="r", encoding="utf-8") as input:
+    with open(book_name + ".txt", mode="r", encoding="utf-8") as input:
         lines = input.readlines()
         block_count = 0
         block_first = True
         catalog = False
         catalog_count = 0
-        with open(file_name + ".html", mode="w", encoding="utf-8") as output:
+        with open(book_name + ".html", mode="w", encoding="utf-8") as output:
             output.write(
                 '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>'
-                + file_name
+                + book_name
                 + "</title>\n</head>\n<body>\n<h1>"
-                + file_name
+                + book_name
                 + "</h1>\n"
+                + "<p>"
+                + author_name
+                + "</p>\n"
             )
             for line in lines:
                 if "\n" == line[-1]:
