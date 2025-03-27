@@ -3,13 +3,18 @@ def main(
     author_name: str = "明．余邵魚",
     catalog_tag: str = "目錄",
 ) -> None:
-    with open(book_name + ".txt", mode="r", encoding="utf-8") as input:
+    with open(
+        f"{book_name}（校對）/{book_name}.txt", mode="r", encoding="utf-8"
+    ) as input:
         lines = input.readlines()
         block_count = 0
         block_first = True
         catalog = False
         catalog_count = 0
-        with open(book_name + ".html", mode="w", encoding="utf-8") as output:
+        with open(
+            f"{book_name}（校對）/{book_name}.html", mode="w", encoding="utf-8"
+        ) as output:
+            file_splitter = None
             output.write(
                 '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>'
                 + book_name
@@ -29,15 +34,23 @@ def main(
                         + line
                         + "</a></p>\n"
                     )
+                    file_splitter.write(line + "\n")
                     catalog_count += 1
                 elif block_first and "" != line:
                     output.write(f'<h2 id="section_{block_count}">' + line + "</h2>\n")
+                    file_splitter = open(
+                        f"{book_name}（校對）/《{book_name}》{line}.txt",
+                        mode="w",
+                        encoding="utf-8",
+                    )
                     block_first = False
                 elif "" != line:
                     output.write("<p>" + line + "</p>\n")
+                    file_splitter.write(line + "\n")
                 if catalog_tag == line:
                     catalog = True
                 elif "　　※※※" == line:
+                    file_splitter.close()
                     catalog = False
                     block_count += 1
                     block_first = True
